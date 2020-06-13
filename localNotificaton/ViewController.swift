@@ -30,6 +30,9 @@ class ViewController: UIViewController {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (bool, error) in
             // code goes here
             
+            print("Hello group")
+            
+            
         }
         
         
