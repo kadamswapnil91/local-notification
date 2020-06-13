@@ -1,24 +1,42 @@
-//
-//  ViewController.swift
-//  localNotificaton
-//
-//  Created by Swapnil Kadam on 26/05/20.
-//  Copyright © 2020 Swapnil Kadam. All rights reserved.
-//
+
 
 import UIKit
-
+import UserNotifications
 class ViewController: UIViewController {
 
+    @IBAction func btn_poprest(_ sender: UIButton)
+    {
+        let first = UNMutableNotificationContent()
+        
+        first.title = "First Notification"
+        first.subtitle = "yell yeah"
+        first.body = "hey i am here to notify you???"
+        first.badge = 1
+        
+        
+        // now we deploy the notification
+        
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: 5, repeats: false)
+        let request = UNNotificationRequest (identifier: "first to notify", content: first, trigger: trigger)
+        UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
+        
+        
+        
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (bool, error) in
+            // code goes here
+            
+        }
+        
+        
+        
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+  
 
 
 }
